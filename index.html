@@ -13,6 +13,12 @@
             Smooch.init({ integrationId: '5f9314277443c7000ccba68a' }).then(
                 function() {
                     // Your code after init is complete
+                    Smooch.on('widget:opened', function () {
+                        var user = Smooch.getUser();
+                        if (!user.id) {
+                            Smooch.createConversation();
+                        }
+                    });
                 },
                 function(err) {
                     // Something went wrong during initialization
